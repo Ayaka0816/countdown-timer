@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作業日報</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background: linear-gradient(135deg, #fff4e0 0%, #ffe5b4 50%, #ffd691 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #ff7eb3 0%, #ff758c 50%, #ff6b9d 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
+        }
+
+        .header h1 {
+            font-family: 'Dela Gothic One', cursive;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            letter-spacing: 0.1em;
+        }
+
+        .material-icons {
+            font-size: inherit;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: background-color 0.3s ease;
+        }
+
+        .radio-option:hover {
+            background-color: #f0f0f0;
+        }
+
+        .radio-option input[type="radio"] {
+            margin: 0;
+            cursor: pointer;
+        }
+
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e1e5e9;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+            min-height: 48px;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #ff6b9d 0%, #ff8a80 50%, #ff7043 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 6px;
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .btn-right {
+            display: block;
+            margin-left: auto;
+            margin-top: 20px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 157, 0.4);
+        }
+
+        .reports-list {
+            margin-top: 30px;
+        }
+
+        .report-item {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 4px solid #667eea;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .report-date {
+            font-weight: 600;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .report-content {
+            margin-bottom: 10px;
+        }
+
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .tab {
+            flex: 1;
+            padding: 15px;
+            background: #f8f9fa;
+            border: none;
+            cursor: pointer;
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .tab.active {
+            background: linear-gradient(135deg, #ff6b9d 0%, #ff8a80 50%, #ff7043 100%);
+            color: white;
+        }
+
+        .tab:hover:not(.active) {
+            background: #e9ecef;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .delete-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 5px 15px;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+            float: right;
+        }
+
+        .delete-btn:hover {
+            background: #c82333;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header {
+                padding: 20px;
+            }
+            
+            .card {
+                padding: 20px;
+            }
+            
+            .tabs {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><span class="material-icons">assignment</span> 作業日報</h1>
+            <p>毎日の業務を記録して効率的に管理しましょう</p>
+        </div>
+
+        <div class="tabs">
+            <button class="tab active" onclick="showTab('input')">日報入力</button>
+            <button class="tab" onclick="showTab('view')">日報一覧</button>
+        </div>
+
+        <div id="input-tab" class="tab-content active">
+            <div class="card">
+                <h2 style="margin-bottom: 30px;">今日の作業日報</h2>
+                <form id="reportForm">
+                    <div class="form-group">
+                        <label for="date">日付</label>
+                        <input type="date" id="date" name="date" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>天気</label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="weather" value="sunny 晴れ" checked>
+                                <span>晴れ</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="weather" value="cloudy 曇り">
+                                <span>曇り</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="weather" value="rainy 雨">
+                                <span>雨</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="weather" value="snowy 雪">
+                                <span>雪</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="startTime">開始時間</label>
+                        <input type="time" id="startTime" name="startTime" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="endTime">終了時間</label>
+                        <input type="time" id="endTime" name="endTime" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tasks">実施した作業内容</label>
+                        <textarea id="tasks" name="tasks" placeholder="今日行った作業について詳しく記入してください..." required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="achievements">成果・達成事項</label>
+                        <textarea id="achievements" name="achievements" placeholder="今日の成果や達成できたことを記入してください..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="issues">課題・問題点</label>
+                        <textarea id="issues" name="issues" placeholder="今日遭遇した課題や問題点があれば記入してください..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tomorrow">明日の予定</label>
+                        <textarea id="tomorrow" name="tomorrow" placeholder="明日の作業予定について記入してください..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-right">日報を保存</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="view-tab" class="tab-content">
+            <div class="card">
+                <h2>過去の日報一覧</h2>
+                <div id="reportsList" class="reports-list">
+                    <!-- 保存された日報がここに表示されます -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 今日の日付を自動設定
+        document.getElementById('date').value = new Date().toISOString().split('T')[0];
+
+        // タブ切り替え機能
+        function showTab(tabName) {
+            // すべてのタブコンテンツを非表示
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // すべてのタブボタンを非アクティブ
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // 選択されたタブを表示
+            document.getElementById(tabName + '-tab').classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // 日報フォームの送信処理
+        document.getElementById('reportForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const reportData = {
+                date: formData.get('date'),
+                weather: formData.get('weather'),
+                startTime: formData.get('startTime'),
+                endTime: formData.get('endTime'),
+                tasks: formData.get('tasks'),
+                achievements: formData.get('achievements'),
+                issues: formData.get('issues'),
+                tomorrow: formData.get('tomorrow'),
+                timestamp: new Date().toISOString()
+            };
+
+            // ローカルストレージに保存
+            saveReport(reportData);
+            
+            // フォームをリセット
+            this.reset();
+            document.getElementById('date').value = new Date().toISOString().split('T')[0];
+            
+            // 成功メッセージ
+            alert('日報が保存されました！');
+            
+            // 日報一覧を更新
+            displayReports();
+        });
+
+        // 日報をローカルストレージに保存
+        function saveReport(reportData) {
+            let reports = JSON.parse(localStorage.getItem('workReports') || '[]');
+            reports.unshift(reportData); // 新しい日報を先頭に追加
+            localStorage.setItem('workReports', JSON.stringify(reports));
+        }
+
+        // 保存された日報を表示
+        function displayReports() {
+            const reports = JSON.parse(localStorage.getItem('workReports') || '[]');
+            const reportsList = document.getElementById('reportsList');
+            
+            if (reports.length === 0) {
+                reportsList.innerHTML = '<p style="text-align: center; color: #666; padding: 40px;">まだ日報が登録されていません</p>';
+                return;
+            }
+
+            reportsList.innerHTML = reports.map((report, index) => `
+                <div class="report-item">
+                    <button class="delete-btn" onclick="deleteReport(${index})">削除</button>
+                    <div class="report-date">${formatDate(report.date)} ${getWeatherIcon(report.weather)}</div>
+                    <div class="report-content">
+                        <strong>勤務時間:</strong> ${report.startTime} - ${report.endTime}
+                    </div>
+                    <div class="report-content">
+                        <strong>作業内容:</strong><br>
+                        ${report.tasks.replace(/\n/g, '<br>')}
+                    </div>
+                    ${report.achievements ? `
+                        <div class="report-content">
+                            <strong>成果・達成事項:</strong><br>
+                            ${report.achievements.replace(/\n/g, '<br>')}
+                        </div>
+                    ` : ''}
+                    ${report.issues ? `
+                        <div class="report-content">
+                            <strong>課題・問題点:</strong><br>
+                            ${report.issues.replace(/\n/g, '<br>')}
+                        </div>
+                    ` : ''}
+                    ${report.tomorrow ? `
+                        <div class="report-content">
+                            <strong>明日の予定:</strong><br>
+                            ${report.tomorrow.replace(/\n/g, '<br>')}
+                        </div>
+                    ` : ''}
+                </div>
+            `).join('');
+        }
+
+        // 日報を削除
+        function deleteReport(index) {
+            if (confirm('この日報を削除しますか？')) {
+                let reports = JSON.parse(localStorage.getItem('workReports') || '[]');
+                reports.splice(index, 1);
+                localStorage.setItem('workReports', JSON.stringify(reports));
+                displayReports();
+            }
+        }
+
+        // 日付をフォーマット
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            const weekdays = ['日', '月', '火', '水', '木', '金', '土'];
+            const weekday = weekdays[date.getDay()];
+            
+            return `${year}年${month}月${day}日(${weekday})`;
+        }
+
+        // 天気テキストを取得する関数
+        function getWeatherIcon(weather) {
+            if (weather.includes('sunny') || weather.includes('晴れ')) {
+                return '晴れ';
+            } else if (weather.includes('cloudy') || weather.includes('曇り')) {
+                return '曇り';
+            } else if (weather.includes('rainy') || weather.includes('雨')) {
+                return '雨';
+            } else if (weather.includes('snowy') || weather.includes('雪')) {
+                return '雪';
+            } else {
+                return weather;
+            }
+        }
+
+        // ページ読み込み時に日報一覧を表示
+        window.addEventListener('load', function() {
+            displayReports();
+        });
+    </script>
+</body>
+</html>
