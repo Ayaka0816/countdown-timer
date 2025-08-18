@@ -361,6 +361,66 @@ document.addEventListener('keydown', (event) => {
     event.preventDefault();
 });
 
+// タッチ操作用の変数
+let touchStartX = 0;
+let touchStartY = 0;
+let touchStartTime = 0;
+
+// タッチイベントの追加
+canvas.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    const touch = e.touches[0];
+    touchStartX = touch.clientX;
+    touchStartY = touch.clientY;
+    touchStartTime = Date.now();
+});
+
+canvas.addEventListener('touchend', (e) => {
+    e.preventDefault();
+    if (!gameRunning || gamePaused) return;
+    
+    const touch = e.changedTouches[0];
+    const touchEndX = touch.clientX;
+    const touchEndY = touch.clientY;
+    const touchEndTime = Date.now();
+    
+    const deltaX = touchEndX - touchStartX;
+    const deltaY = touchEndY - touchStartY;
+    const deltaTime = touchEndTime - touchStartTime;
+    
+    // タップ（短時間の触れ方）の場合は回転
+    if (Math.abs(deltaX) < 30 && Math.abs(deltaY) < 30 && deltaTime < 200) {
+        rotate();
+        return;
+    }
+    
+    // スワイプジェスチャーの判定
+    if (Math.abs(deltaX) > Math.abs(deltaY)) {
+        // 水平スワイプ
+        if (Math.abs(deltaX) > 50) {
+            if (deltaX > 0) {
+                move(1, 0); // 右移動
+            } else {
+                move(-1, 0); // 左移動
+            }
+        }
+    } else {
+        // 垂直スワイプ
+        if (Math.abs(deltaY) > 50) {
+            if (deltaY > 0) {
+                move(0, 1); // 下移動
+            } else {
+                hardDrop(); // 上スワイプでハードドロップ
+            }
+        }
+    }
+});
+
+// タッチ時のスクロールを防ぐ
+document.body.addEventListener('touchmove', (e) => {
+    e.preventDefault();
+}, { passive: false });
+
 document.getElementById('start-btn').addEventListener('click', startGame);
 document.getElementById('pause-btn').addEventListener('click', pauseGame);
 
