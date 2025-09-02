@@ -1,0 +1,385 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Dela Gothic One', 'Georgia', serif;
+    background: linear-gradient(-60deg, hsl(120, 90.40262602971103%, 59.60097316708822%) 0%, hsl(154.87603158871207, 94.9977830404437%, 72.94015541674524%) 50%, hsl(190.31552437628739, 76.44823750378319%, 81.00394731125799%) 100%);
+    min-height: 100vh;
+    color: #333;
+}
+
+body * {
+    font-family: 'M PLUS Rounded 1c', 'Dela Gothic One', 'Georgia', serif;
+}
+
+h1 {
+    font-family: 'Dela Gothic One', 'Georgia', serif !important;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8), -1px -1px 2px rgba(255, 255, 255, 0.8), 1px -1px 2px rgba(255, 255, 255, 0.8), -1px 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+h1 .material-icons {
+    font-size: 1.2em;
+    color: #f39c12;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8), -1px -1px 2px rgba(255, 255, 255, 0.8), 1px -1px 2px rgba(255, 255, 255, 0.8), -1px 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 30px 0;
+}
+
+h1 {
+    font-size: 2.5em;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #7f8c8d;
+    font-style: italic;
+    font-size: 1.1em;
+}
+
+.diary-entry-form {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.language-toggle {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.lang-btn {
+    padding: 10px 20px;
+    border: 2px solid #e0e0e0;
+    background: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: all 0.3s ease;
+}
+
+.lang-btn.active {
+    background: hsl(154, 95%, 73%);
+    color: #2c3e50;
+    border-color: hsl(154, 95%, 73%);
+}
+
+.lang-btn:hover:not(.active) {
+    border-color: hsl(154, 95%, 73%);
+}
+
+.input-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+.three-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.input-group label {
+    font-weight: 700;
+    color: #2c3e50;
+    font-size: 0.9em;
+}
+
+.input-section.hidden {
+    display: none;
+}
+
+#diaryInput1, #diaryInput2, #diaryInput3,
+#japaneseInput1, #japaneseInput2, #japaneseInput3 {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-family: 'M PLUS Rounded 1c', 'Georgia', serif;
+    transition: border-color 0.3s ease;
+    line-height: 1.5;
+}
+
+#diaryInput1:focus, #diaryInput2:focus, #diaryInput3:focus,
+#japaneseInput1:focus, #japaneseInput2:focus, #japaneseInput3:focus {
+    outline: none;
+    border-color: #3498db;
+}
+
+#addEntry, #translateBtn {
+    padding: 15px 25px;
+    background: hsl(120, 90%, 75%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+    white-space: nowrap;
+    align-self: center;
+    margin-top: 10px;
+    text-shadow: 0.5px 0.5px 1px rgba(0, 0, 0, 0.3), -0.5px -0.5px 1px rgba(0, 0, 0, 0.3), 0.5px -0.5px 1px rgba(0, 0, 0, 0.3), -0.5px 0.5px 1px rgba(0, 0, 0, 0.3);
+}
+
+#addEntry:hover, #translateBtn:hover {
+    background: hsl(120, 90%, 70%);
+}
+
+.translation-preview {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid #e9ecef;
+    width: 100%;
+}
+
+.translation-preview.hidden {
+    display: none;
+}
+
+.translation-label {
+    font-size: 0.9em;
+    color: #6c757d;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+#translatedText {
+    font-size: 1.1em;
+    color: #2c3e50;
+    margin-bottom: 15px;
+    padding: 10px;
+    background: white;
+    border-radius: 5px;
+    border: 1px solid #e0e0e0;
+}
+
+.translation-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.translation-actions button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease;
+}
+
+#confirmTranslation {
+    background: #27ae60;
+    color: white;
+}
+
+#confirmTranslation:hover {
+    background: #219a52;
+}
+
+#editTranslation {
+    background: #f39c12;
+    color: white;
+}
+
+#editTranslation:hover {
+    background: #e67e22;
+}
+
+#cancelTranslation {
+    background: #e74c3c;
+    color: white;
+}
+
+#cancelTranslation:hover {
+    background: #c0392b;
+}
+
+.entries-section h2 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    font-family: 'Dela Gothic One', 'Georgia', serif !important;
+}
+
+.entries-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.diary-entry {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    border-left: 4px solid #3498db;
+    position: relative;
+    transition: transform 0.2s ease;
+}
+
+.diary-entry:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.entry-date {
+    font-size: 0.9em;
+    color: #7f8c8d;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.entry-text {
+    font-size: 1.1em;
+    line-height: 1.5;
+    color: #2c3e50;
+}
+
+.entry-japanese {
+    font-size: 1.1em;
+    line-height: 1.5;
+    color: #2c3e50;
+    margin-bottom: 8px;
+    padding: 8px;
+    background: #f8f9fa;
+    border-radius: 5px;
+    border-left: 3px solid #e74c3c;
+}
+
+.entry-english {
+    font-size: 1.05em;
+    line-height: 1.5;
+    color: #34495e;
+    padding: 8px;
+    background: #ecf0f1;
+    border-radius: 5px;
+    border-left: 3px solid #3498db;
+    font-style: italic;
+}
+
+.three-things {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.thing-item {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 12px;
+    border-left: 4px solid #27ae60;
+}
+
+.thing-item .entry-japanese {
+    margin-bottom: 6px;
+    background: #fff;
+    border-left: 3px solid #e74c3c;
+}
+
+.thing-item .entry-english {
+    background: #fff;
+    border-left: 3px solid #3498db;
+    margin-bottom: 0;
+}
+
+.entry-english-only {
+    font-size: 1.05em;
+    line-height: 1.5;
+    color: #34495e;
+    padding: 8px;
+    background: #fff;
+    border-radius: 5px;
+    border-left: 3px solid #3498db;
+    font-style: italic;
+}
+
+.delete-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    font-size: 0.8em;
+    transition: background-color 0.3s ease;
+}
+
+.delete-btn:hover {
+    background: #c0392b;
+}
+
+.no-entries {
+    text-align: center;
+    color: #7f8c8d;
+    font-style: italic;
+    padding: 40px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 10px;
+    }
+    
+    .diary-entry-form {
+        padding: 20px;
+    }
+    
+    .input-section {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    #diaryInput1, #diaryInput2, #diaryInput3,
+    #japaneseInput1, #japaneseInput2, #japaneseInput3 {
+        width: 100%;
+    }
+    
+    .translation-actions {
+        flex-direction: column;
+    }
+    
+    h1 {
+        font-size: 2em;
+    }
+}

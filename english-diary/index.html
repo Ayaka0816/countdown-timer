@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3good things by English</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=M+PLUS+Rounded+1c:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><span class="material-icons">auto_awesome</span> 3good things by English</h1>
+            <p class="subtitle">Write three good things that happened today</p>
+        </header>
+        
+        <main>
+            <div class="diary-entry-form">
+                <div class="language-toggle">
+                    <button id="japaneseBtn" class="lang-btn active">日本語</button>
+                    <button id="englishBtn" class="lang-btn">English</button>
+                </div>
+                
+                <div class="input-section" id="japaneseSection">
+                    <div class="three-inputs">
+                        <div class="input-group">
+                            <label for="japaneseInput1">1つ目の良いこと:</label>
+                            <input type="text" id="japaneseInput1" placeholder="今日は..." maxlength="100">
+                        </div>
+                        <div class="input-group">
+                            <label for="japaneseInput2">2つ目の良いこと:</label>
+                            <input type="text" id="japaneseInput2" placeholder="それから..." maxlength="100">
+                        </div>
+                        <div class="input-group">
+                            <label for="japaneseInput3">3つ目の良いこと:</label>
+                            <input type="text" id="japaneseInput3" placeholder="最後に..." maxlength="100">
+                        </div>
+                    </div>
+                    <button id="translateBtn">翻訳して追加</button>
+                </div>
+                
+                <div class="input-section hidden" id="englishSection">
+                    <div class="three-inputs">
+                        <div class="input-group">
+                            <label for="diaryInput1">First good thing:</label>
+                            <input type="text" id="diaryInput1" placeholder="Today I..." maxlength="100">
+                        </div>
+                        <div class="input-group">
+                            <label for="diaryInput2">Second good thing:</label>
+                            <input type="text" id="diaryInput2" placeholder="Then I..." maxlength="100">
+                        </div>
+                        <div class="input-group">
+                            <label for="diaryInput3">Third good thing:</label>
+                            <input type="text" id="diaryInput3" placeholder="Finally..." maxlength="100">
+                        </div>
+                    </div>
+                    <button id="addEntry">Add Entry</button>
+                </div>
+                
+                <div id="translationPreview" class="translation-preview hidden">
+                    <p class="translation-label">English translation:</p>
+                    <p id="translatedText"></p>
+                    <div class="translation-actions">
+                        <button id="confirmTranslation">確定</button>
+                        <button id="editTranslation">編集</button>
+                        <button id="cancelTranslation">キャンセル</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="entries-section">
+                <h2>Your Entries</h2>
+                <div id="entriesList" class="entries-list">
+                    <!-- Diary entries will appear here -->
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
